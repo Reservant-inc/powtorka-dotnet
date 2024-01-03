@@ -19,6 +19,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    // Updatujemy bazę danych (pozwala nie używać migracji).
+    using var scope = app.Services.CreateScope();
+    await scope.ServiceProvider
+        .GetService<PowtorkaDbContext>()!
+        .Database
+        .EnsureCreatedAsync();
 }
 
 app.MapControllers();
