@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Powtorka.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<PowtorkaDbContext>(options =>
+    options.UseSqlite("Data Source=app.db"));
 
 builder.Services.AddControllers();
 
