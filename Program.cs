@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Powtorka.Data;
 
+Console.WriteLine("Hello, world!");
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<PowtorkaDbContext>(options =>
