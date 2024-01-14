@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Powtorka.Models;
 
-public class Restaurant
+public class MenuItem
 {
     [Key]
     public int Id { get; set; }
@@ -10,8 +10,10 @@ public class Restaurant
     [Required, MaxLength(70)]
     public string Name { get; set; } = null!;
 
-    [Required]
-    public DateTime AddedAt { get; set; }
+    [Required, Range(0, 200)]
+    public decimal Price { get; set; }
 
-    public ICollection<MenuItem>? Menu { get; set; }
+    public int RestaurantId { get; set; }
+
+    public Restaurant? Restaurant { get; set; }
 }
