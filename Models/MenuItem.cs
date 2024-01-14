@@ -8,7 +8,7 @@ public class MenuItem
     public int Id { get; set; }
 
     [Required, MaxLength(70)]
-    public string Name { get; set; } = null!;
+    public required string Name { get; set; }
 
     [Required, Range(0, 200)]
     public decimal Price { get; set; }

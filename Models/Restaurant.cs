@@ -8,7 +8,7 @@ public class Restaurant
     public int Id { get; set; }
 
     [Required, MaxLength(70)]
-    public string Name { get; set; } = null!;
+    public required string Name { get; set; }
 
     [Required]
     public DateTime AddedAt { get; set; }
