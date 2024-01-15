@@ -13,5 +13,5 @@ public class Restaurant
     [Required]
     public DateTime AddedAt { get; set; }
 
-    public ICollection<MenuItem>? Menu { get; set; }
+    public ICollection<MenuItem> Menu { get; set; } = null!;
 }
