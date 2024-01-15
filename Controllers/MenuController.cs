@@ -71,9 +71,8 @@ namespace Powtorka.Controllers
             context.MenuItems.Remove(menuItem);
             restaurant.Menu.Remove(menuItem);
 
-
             await context.SaveChangesAsync();
-
+             
             return NoContent();
         }
 
