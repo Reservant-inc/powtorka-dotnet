@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Powtorka.Data;
+using Powtorka.Services;
 
 namespace Powtorka.Controllers
 {
@@ -7,11 +9,15 @@ namespace Powtorka.Controllers
     /// </summary>
     [Route("/api/restaurants/{restaurantId:int}/menu")]
     [ApiController]
-    public class MenuController : Controller
+    public class MenuController(PowtorkaDbContext context, IMenuService menuService) : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
+
+
+        [HttpGet]
+        public IActionResult getMenu(int restaurantId) {
+            var MenuItems = menuService.GetMenuItems(restaurantId, context);
+            return Ok(MenuItems.Result);
         }
+
     }
 }

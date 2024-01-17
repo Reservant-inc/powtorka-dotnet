@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Powtorka.Data;
+using Powtorka.Services;
 
 Console.WriteLine("Hello, world!");
 
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<PowtorkaDbContext>(options =>
     options.UseSqlite("Data Source=app.db"));
+
+builder.Services.AddScoped<IMenuService, MenuService>();
 
 builder.Services.AddControllers();
 
