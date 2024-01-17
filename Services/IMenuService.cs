@@ -9,5 +9,7 @@ namespace Powtorka.Services
         public Task<List<MenuItemDTO>> GetMenuItems(int IdRestauracji, PowtorkaDbContext context);
 
         public MenuItemDTO AddMenuItem(int IdRestauracji, PowtorkaDbContext context, MenuItemDTO menuItemDTO);
+
+        public int DeleteMenuItem(int itemId, PowtorkaDbContext context);
     }
 }

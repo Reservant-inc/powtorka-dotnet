@@ -25,6 +25,15 @@ namespace Powtorka.Controllers
             var res = menuService.AddMenuItem(restaurantId, context, menuItemDTO);
             return Created(Address, res);
         }
+        [HttpDelete("{itemId:int}")]
+        public IActionResult DeleteMenuItem(int ItemId) {
+            var res = menuService.DeleteMenuItem(ItemId, context);
+            if(res==200)
+                return NoContent();
+            if(res==404)
+                return NotFound();
+            return BadRequest();
+        }
 
     }
 }

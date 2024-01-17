@@ -6,6 +6,17 @@ namespace Powtorka.Services
 {
     public class MenuService : IMenuService
     {
+        public Task<List<MenuItemDTO>> GetMenuItems(int IdRestauracji, PowtorkaDbContext context)
+        {
+            var res = context.MenuItems.Select(m => new MenuItemDTO
+            {
+                IdRes = m.Id,
+                Name = m.Name,
+                Price = m.Price
+            }).Where(m => m.IdRes == IdRestauracji).ToListAsync();
+
+            return res;
+        }
         public MenuItemDTO AddMenuItem(int IdRestauracji, PowtorkaDbContext context, MenuItemDTO menuItemDTO)
         {
             context.MenuItems.AddAsync(new Models.MenuItem() { 
@@ -23,16 +34,17 @@ namespace Powtorka.Services
             };
         }
 
-        public Task<List<MenuItemDTO>> GetMenuItems(int IdRestauracji, PowtorkaDbContext context)
+        public int DeleteMenuItem(int itemId, PowtorkaDbContext context)
         {
-            var res = context.MenuItems.Select(m => new MenuItemDTO
-            {
-                IdRes = m.Id,
-                Name = m.Name,
-                Price = m.Price
-            }).Where(m => m.IdRes == IdRestauracji).ToListAsync();
+            var item = context.MenuItems
+                              .FirstOrDefaultAsync(m => m.Id == itemId);
+            if (item is null)
+                return 404;
 
-            return res;
+            context.Remove(item);
+            context.SaveChangesAsync();
+
+            return 200;
         }
     }
 }
