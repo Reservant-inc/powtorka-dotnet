@@ -3,6 +3,6 @@
     public class RestaurantDTO
     {
         public required string Name { get; set; }
-        public required List<MenuItemDTO> MenuItems { get; set; }
+        public required IEnumerable<MenuItemDTO> MenuItems { get; set; }
     }
 }
